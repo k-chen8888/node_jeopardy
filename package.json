@@ -1,0 +1,23 @@
+{
+  "name": "jeopardy_game",
+  "version": "0.0.1",
+  "description": "Simple jeopardy game that simulates a host, a display, and an arbitrary number of players",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k-chen8888/node_jeopardy.git"
+  },
+  "author": "JVCA_Webmaster",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k-chen8888/node_jeopardy/issues"
+  },
+  "homepage": "https://github.com/k-chen8888/node_jeopardy#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6"
+  }
+}
