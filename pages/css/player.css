@@ -1,1 +1,16 @@
-{\rtf1}
+head, body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+button#respond {
+	/* Size and position */
+	width: 80vw;
+	height: 50vh;
+	margin: 25vh 10vw 0 10vw;
+	
+	/* Appearance */
+	background: #FFB7C5; /* Cherry Blossom Pink */
+	border: none;
+}
