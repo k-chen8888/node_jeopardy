@@ -3,6 +3,9 @@
 // URL parameters
 var params;
 
+// Toasts
+var toasts = [];
+
 
 /* Initialization function */
 var init = function() {
@@ -16,7 +19,20 @@ var init = function() {
 		// Button notifies server that player is ready to answer
 		// Allow 15 seconds to answer before deducting points
 		$('button#respond').click(function() {
-			alert('You have 15 seconds to respond');
+			toasts.push(makeToast({
+				classes: 'delay',
+				info: {
+					content: '<p id="content">You have 15 seconds to answer this question</p>',
+					time: 15,
+					update: function() {
+						this.time -= 1;
+						if (this.time > 0) this.content = 'You have ' + this.time + ' seconds to answer this question';
+						else this.content = 'You are out of time';
+						
+						return this.content;
+					}
+				}
+			}));
 		});
 	} else {
 		$('body').append(
