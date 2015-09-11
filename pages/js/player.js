@@ -3,12 +3,22 @@
 // URL parameters
 var params;
 
+// socket.io
+var socket = io();
+
+// Game info
+var 
+
 // Toasts
 var toasts = [];
 
 
 /* Initialization function */
 var init = function() {
+	// Fastclick, so that PC users don't have an advantage when buzzing in
+	var fast = Origami.fastclick;
+	fast(document.body);
+	
 	// Get URL parameters
 	params = getUrlParam();
 	
@@ -22,25 +32,47 @@ var init = function() {
 			toasts.push(makeToast({
 				classes: 'delay',
 				info: {
+					// Parameters that the function can actually use
 					content: '<p id="content">You have 15 seconds to answer this question...</p>',
-					time: 15,
-					update: function() {
+					update: function(change) {
 						this.time -= 1;
-						if (this.time > 0) this.content = 'You have ' + this.time + ' seconds to answer this question...';
-						else this.content = 'You are out of time';
-						
-						return this.content;
-					}
+						if (this.time > 0) change.text('You have ' + this.time + ' seconds to answer this question...');
+						else this.content = change.text('You are out of time');
+					},
+					
+					// Other parameters
+					time: 15
 				}
 			}));
 		});
 	} else {
 		$('body').append(
 			'<form id="joingame">' +
+				'Enter the ID for the room</br>' +
+				'<input type="text" name="roomid">' +
 				'Enter the ID given to you by the host:</br>' +
-				'<input type="text" name="gameid">' +
+				'<input type="text" name="playerid">' +
 				'<input type="submit" value="Submit">' +
 			'</form>'
 		);
+		
+		// Form submits the ID to server via socket.io
+		$('form#joingame').submit(function(e) {
+			// Do not POST
+			e.preventDefault();
+			
+			// Send the form data
+			socket.emit('join', {
+				room: $('input[name=roomid]').val(),
+				player: $('input[name=playerid]').val()
+			});
+			
+			return false;
+		});
+		
+		// Sets up a listener to redirect to the room on receiving a verification from the server
+		socket.on('allowed', function(data) {
+			window.location.replace(window.location.href + '?id=' + data);
+		});
 	}
 };
