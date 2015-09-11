@@ -7,7 +7,7 @@ var params;
 var socket = io();
 
 // Game info
-var 
+//var 
 
 // Toasts
 var toasts = [];
@@ -29,6 +29,9 @@ var init = function() {
 		// Button notifies server that player is ready to answer
 		// Allow 15 seconds to answer before deducting points
 		$('button#respond').click(function() {
+			// Ignore the button if there is a toast up
+			if ($('p#content').length > 0) return false;
+			
 			toasts.push(makeToast({
 				classes: 'delay',
 				info: {
@@ -44,6 +47,8 @@ var init = function() {
 					time: 15
 				}
 			}));
+			
+			return false;
 		});
 	} else {
 		$('body').append(
