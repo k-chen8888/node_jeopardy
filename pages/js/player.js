@@ -12,6 +12,12 @@ var init = function() {
 	// Display content based on URL prarmeters
 	if (params['id']) {
 		$('body').append('<button id="respond">I know the answer!</button>');
+		
+		// Button notifies server that player is ready to answer
+		// Allow 15 seconds to answer before deducting points
+		$('button#respond').click(function() {
+			alert('You have 15 seconds to respond');
+		});
 	} else {
 		$('body').append(
 			'<form id="joingame">' +
