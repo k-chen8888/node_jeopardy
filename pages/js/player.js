@@ -24,6 +24,7 @@ var init = function() {
 	
 	// Display content based on URL prarmeters
 	if (params['id']) {
+		document.title = 'Are You Ready to Play Jeopardy?';
 		$('body').append('<button id="respond">I know the answer!</button>');
 		
 		// Button notifies server that player is ready to answer
@@ -51,12 +52,14 @@ var init = function() {
 			return false;
 		});
 	} else {
+		document.title = 'Welcome, New Challenger!';
+		
 		$('body').append(
 			'<form id="joingame">' +
 				'Enter the ID for the room</br>' +
-				'<input type="text" name="roomid">' +
+				'<input type="text" name="roomid"><br><br>' +
 				'Enter the ID given to you by the host:</br>' +
-				'<input type="text" name="playerid">' +
+				'<input type="text" name="playerid"><br><br>' +
 				'<input type="submit" value="Submit">' +
 			'</form>'
 		);
