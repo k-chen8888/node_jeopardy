@@ -26,7 +26,7 @@ var init = function() {
 		
 	} else {
 		// Ask host to create a room
-		$('body').append('<button id="makegame"></button>');
+		$('body').append('<button id="makegame">New Jeopardy Game</button>');
 		$('button#makegame').click(function() {
 			socket.emit('makegame', {});
 		});
