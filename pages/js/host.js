@@ -44,7 +44,7 @@ var init = function() {
 			}, 2000);
 			
 			// Display host interface, which is just a clickable version of the display
-			makeGameBoard(data, true);
+			makeGameBoard(data, socket);
 		});
 	} else {
 		// Ask host to create a room
