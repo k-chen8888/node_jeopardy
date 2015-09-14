@@ -14,6 +14,12 @@ var io = require('socket.io')(http);
 
 /* Jeopardy game interface */
 
+// Games go here for now, indexed by a randomly generated roomID
+var games = {};
+
+// Static file middleware
+app.use(Express.static('pages'));
+
 // Main display for game
 // Project this where all players can see	
 app.get('/', function(req, res) {
