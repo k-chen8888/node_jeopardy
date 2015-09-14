@@ -1,0 +1,8 @@
+div#board {
+	margin: 0 1vw 0 1vw;
+}
+
+div#category {
+	display: inline-block;
+	padding-right: 1vw;
+}
