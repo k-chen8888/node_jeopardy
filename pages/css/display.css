@@ -1,8 +1,26 @@
-div#board {
-	margin: 0 1vw 0 1vw;
+/* The Jeopardy board
+ */
+
+ div#board {
+	background-color: rgb(0, 0, 0);
 }
 
 div#category {
 	display: inline-block;
-	padding-right: 1vw;
+	overflow-x: hidden;
 }
+
+div#name, div#question {
+    /*line-height: 45px;*/
+	margin: 0 .5vw 0 .5vw;
+	background-color: rgb(6, 12, 233); /* Jeopardy Blue */
+}
+
+div#name h2, div#question h2 {
+	text-align: center;
+	color: rgb(255,215,0);             /* Gold */
+}
+
+
+/* Toasts
+ */

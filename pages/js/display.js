@@ -32,12 +32,21 @@ var init = function() {
 			toasts = [];
 		}, 2000);
 		
+		// Draw scorecard
+		makeScoreCard(data.players);
+		
 		// Draw display interface, non-clickable objects
-		makeGameBoard(data, false);
+		makeGameBoard(data.board, false);
 	});*/
 	
 	// Test drawing, base styles off of this
 	makeGameBoard(testdata, false);
+	
+	// Resizes everything when the game starts and whenever the screen size changes
+	renderJeopardy();
+	$(window).resize(function() {
+		renderJeopardy();
+	});
 };
 
 

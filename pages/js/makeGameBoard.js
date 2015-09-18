@@ -18,7 +18,7 @@ var makeGameBoard = function(data, socket) {
 		$('div#board').append('<div id="category" class="' + cat + '"></div>');
 		
 		// Display name of category
-		$('div#category.' + cat).append('<div id="name" class="' + cat + '">' + data[cat].name + '</div>');
+		$('div#category.' + cat).append('<div id="name" class="' + cat + '"><h2>' + data[cat].name + '</h2></div>');
 		
 		// Display point values for all categories
 		for (var i = 0; i < data[cat].questions.length; i++) {
@@ -39,14 +39,46 @@ var makeGameBoard = function(data, socket) {
 				});
 			} else {
 				// Just show the point values with no links
-				$('div#category.' + cat).append('<div id="question" class="' + cat + ' ' + data[cat].questions[i].points + '">' + data[cat].questions[i].points + '</div>' );
+				$('div#category.' + cat).append('<div id="question" class="' + cat + ' ' + data[cat].questions[i].points + '"><h2>' + data[cat].questions[i].points + '</h2></div>' );
 				
 				// Listen for a display change event
 				// socket redirects the display by sending a plain URL to the answer page
-				socket.on('chdisp', function(page) {
-					window.location.replace(page);
-				});
+				//socket.on('chdisp', function(page) {
+				//	window.location.replace(page);
+				//});
 			}
+		}
+	}
+};
+
+/* Sets the alignment and spacing so that the board looks like a jeopardy board
+ */
+var renderJeopardy = function() {
+	// Player score board
+	
+	// Jeopardy game board
+	$('div#board').height("80vh"); // Height should be 80% of the screen
+	
+	var numcat = $('div#category').length;
+	var width = $('div#board').width() * 1.0 / numcat; // Padding 1 on left and right of board and on left and right of in-category objects
+	
+	for(var i = 0; i < numcat; i++) {
+		$( $('div#category')[i] ).width(width + "px");
+		$( $('div#category')[i] ).height( $('div#board').height() );
+		
+		// Center the contents of the board
+		$( $('div#category')[i] );
+		
+		// Change height of the categories
+		var children = $('div#category').children();
+		for(var j = 0; j < children.length; j++) {
+			// Set child height
+			$(children[j]).height( $('div#category').height() / 10 );
+			
+			// Center child's text
+			$( children[j] ).css({
+				"line-height" : $( children[j] ).height() + 'px'
+			});
 		}
 	}
 };
