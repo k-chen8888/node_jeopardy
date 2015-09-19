@@ -8,7 +8,7 @@
  * 	Standard rules apply (no duplicate point values in a category, etc.)
  * 	@param(socket) is an optional argument; pass this in if the display is meant to be clicked (this happens on the host's side)
  */
-var makeGameBoard = function(data, socket) {
+var showBoard = function(data, socket) {
 	// Container for game board
 	$('body').append('<div id="board"></div>');
 	
@@ -51,29 +51,52 @@ var makeGameBoard = function(data, socket) {
 	}
 };
 
+
+/* Display player names and scores at the top of the board
+ */
+var showPlayers = function(data) {
+	// Container for player data
+	$('body').append('<div id="players"></div>');
+	
+	// Write all player data to container
+	for(player in data) {
+		$('div#players').append('<div id="player" class="' + player + '">' + '<h3 id="name">' + data[player].name + '</h3>' + '<h3 id="score">' + data[player].score + '</h3>' + '</div>');
+	}
+};
+
+
+/* Sets the alignment and spacing of the player container
+ */
+var renderPlayers = function() {
+	// Scale the width based on number of elements and size of parent
+	var numplayers = $('div#player').length;
+	var width = ($('div#players').width()) * 1.0 / numplayers;
+	
+	for(var i = 0; i < numplayers; i++) {
+		// Set individual width and height
+		$( $('div#player')[i] ).width( ( width - (numplayers + 2) * parseInt( $( $('div#player')[i] ).css('margin-left') ) ) + "px" );
+		$( $('div#player')[i] ).height($('div#players').height() + "px");
+	}
+};
+
+
 /* Sets the alignment and spacing so that the board looks like a jeopardy board
  */
 var renderJeopardy = function() {
-	// Player score board
-	
-	// Jeopardy game board
-	$('div#board').height("80vh"); // Height should be 80% of the screen
-	
+	// Scale the width based on number of elements and size of parent
 	var numcat = $('div#category').length;
-	var width = $('div#board').width() * 1.0 / numcat; // Padding 1 on left and right of board and on left and right of in-category objects
+	var width = $('div#board').width() * 1.0 / numcat;
 	
 	for(var i = 0; i < numcat; i++) {
+		// Set individual width and height
 		$( $('div#category')[i] ).width(width + "px");
-		$( $('div#category')[i] ).height( $('div#board').height() );
-		
-		// Center the contents of the board
-		$( $('div#category')[i] );
+		$( $('div#category')[i] ).height( $('div#board').outerHeight() * 1.0 );
 		
 		// Change height of the categories
 		var children = $('div#category').children();
 		for(var j = 0; j < children.length; j++) {
 			// Set child height
-			$(children[j]).height( $('div#category').height() / 10 );
+			$( children[j] ).height( $('div#board').outerHeight() / 10 );
 			
 			// Center child's text
 			$( children[j] ).css({

@@ -36,16 +36,20 @@ var init = function() {
 		makeScoreCard(data.players);
 		
 		// Draw display interface, non-clickable objects
-		makeGameBoard(data.board, false);
+		showPlayers(testPlayerInfo);
+		showBoard(data.board, false);
 	});*/
 	
 	// Test drawing, base styles off of this
-	makeGameBoard(testdata, false);
+	showBoard(testdata, false);
+	showPlayers(testPlayerInfo);
 	
 	// Resizes everything when the game starts and whenever the screen size changes
 	renderJeopardy();
+	renderPlayers();
 	$(window).resize(function() {
 		renderJeopardy();
+		renderPlayers();
 	});
 };
 
@@ -227,3 +231,22 @@ var testdata = {
 		]
 	},
 }
+
+var testPlayerInfo = {
+	id1: {
+		name: "P1",
+		score: 0
+	},
+	id2: {
+		name: "P2",
+		score: 0
+	},
+	id3: {
+		name: "P3",
+		score: 0
+	},
+	id4: {
+		name: "P4",
+		score: 0
+	},
+};
