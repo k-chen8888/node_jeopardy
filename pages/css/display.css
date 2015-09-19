@@ -52,3 +52,29 @@ div#name h2, div#question h2 {
 
 /* Toasts
  */
+
+div.toast.display {
+	margin: .5vh .5vw;
+	padding: 1vh 1vw;
+	
+	border-radius: 10px;
+	border-width: 3px;
+	border-style: solid;
+}
+
+div.toast.display  p#content {
+	display: inline-block;
+	margin: 1vh 0 1vh 0;
+}
+
+/* Waiting for data to load */
+div.toast.display.waiting {
+	border-color: #F0A804;                   /* Pyridium Orange */
+	background-color: rgba(240, 168, 4, .5); /* Pyridium Orange */
+}
+
+/* Data successfully loaded */
+div.toast.display.loaded {
+	border-color: #00AF33;                   /* True Green */
+	background-color: rgba(20, 175, 51, .5); /* True Green */
+}
