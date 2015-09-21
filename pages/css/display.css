@@ -73,8 +73,14 @@ div.toast.display.waiting {
 	background-color: rgba(240, 168, 4, .5); /* Pyridium Orange */
 }
 
+/* Failed to load data */
+div.toast.display.failed {
+	border-color: #DC143C;                   /* Crimson */
+	background-color: rgba(220, 20, 60, .5); /* Crimson */
+}
+
 /* Data successfully loaded */
-div.toast.display.loaded {
+div.toast.display.ready {
 	border-color: #00AF33;                   /* True Green */
 	background-color: rgba(20, 175, 51, .5); /* True Green */
 }

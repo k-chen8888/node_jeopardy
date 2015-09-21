@@ -10,6 +10,15 @@ var socket = io();
 var toasts = [];
 
 
+/* Declares no connection at 5 seconds */
+var no_conn = setTimeout(function() {
+	// Display failed to connect, update toast accordingly
+	toasts[0].obj.removeClass('waiting');
+	toasts[0].obj.addClass('display failed');
+	toasts[0].obj.children('p#content').text('Failed to connect');
+}, 5000);
+
+
 /* Initialization function */
 var init = function() {
 	// Until data from socket.io is received, put up toast
@@ -24,8 +33,8 @@ var init = function() {
 	// Receive data from socket.io
 	/*socket.on('displaydata', function(data) {
 		// Replace the toast, then delete it after 2 seconds
-		toasts[0].obj.removeClass('waiting');
-		toasts[0].obj.addClass('ready');
+		toasts[0].obj.removeClass();
+		toasts[0].obj.addClass('toast display ready');
 		toasts[0].obj.children('p#content').text('Ready!');
 		setTimeout(function(){
 			eatToast(toasts[0]);
