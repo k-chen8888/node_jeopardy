@@ -22,7 +22,7 @@ var init = function() {
 		
 		// Makes it look like there's something going on, in case players take forever
 		toasts.push(makeToast({
-			classes: 'waiting',
+			classes: 'host waiting',
 			info: {
 				// Parameters that the function can actually use
 				content: '<p id="content">Waiting for players to join...</p>',
