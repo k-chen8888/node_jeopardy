@@ -23,17 +23,17 @@ app.use(Express.static('pages'));
 // Main display for game
 // Project this where all players can see	
 app.get('/', function(req, res) {
-	
+	res.sendFile(__dirname__ + '/pages/display.html');
 });
 
 // Host's interface
 app.get('/host', function(req, res) {
-	
+	res.sendFile(__dirname__ + '/pages/host.html');
 });
 
 // Player's interface
 app.get('/player', function(req, res) {
-	
+	res.sendFile(__dirname__ + '/pages/player.html');
 });
 
 // Listener for socket.io
