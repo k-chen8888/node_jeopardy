@@ -3,6 +3,9 @@
 // URL parameters
 var params;
 
+// Timeout for failure
+var fail;
+
 // socket.io
 var socket = io();
 
@@ -32,8 +35,17 @@ var init = function() {
 			edible = false
 		}));
 		
+		// Failure if there is no 'gameready' after 5 seconds
+		fail = setTimeout(function() {
+			toasts[0].obj.removeClass('waiting');
+			toasts[0].obj.addClass('ready');
+			toasts[0].obj.children('p#content').text('Could not prepare game');
+		}, 5000);
+		
 		// Wait for all players to join
 		socket.on('gameready', function(data) {
+			clearTimeout(fail);
+			
 			// Replace the toast, then delete it after 2 seconds
 			toasts[0].obj.removeClass('waiting');
 			toasts[0].obj.addClass('ready');
